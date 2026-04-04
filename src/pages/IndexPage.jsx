@@ -12,12 +12,14 @@ import {
 
 function IndexPage({ isLoggedIn }) {
   // If the user is already logged in, we automatically redirect them to the users page
+  
+  console.log("index page")
   if (isLoggedIn) {
-    return <Navigate to="/users" />;
+    return <Navigate to="/home" />;
   }
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: '#f0f2f5', minHeight: '100vh' }}>
+    <Box sx={{ flexGrow: 1, minHeight: '100vh' }}>
       {/* Top Navigation Bar */}
       <AppBar position="static" elevation={1}>
         <Toolbar>

@@ -10,8 +10,9 @@ function Login({ onLoginSuccess }) {
   const handleLogin = (e) => {
     e.preventDefault();
     // Add your actual authentication logic here
+    console.log("login:succes")
     onLoginSuccess();
-    navigate("/users");
+    navigate("/home");
   };
 
   return (
