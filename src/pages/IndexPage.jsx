@@ -12,6 +12,8 @@ import {
 
 
 
+
+
 function IndexPage({ isLoggedIn }) {
   // If the user is already logged in, we automatically redirect them to the users page
   
