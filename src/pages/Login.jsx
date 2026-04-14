@@ -7,12 +7,41 @@ function Login({ onLoginSuccess }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Add your actual authentication logic here
-    console.log("login:succes")
-    onLoginSuccess();
-    navigate("/home");
+
+    // 1. Prepare the data as URLSearchParams because Spring expects @RequestParam
+    const formData = new URLSearchParams();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    try {
+      // 2. Make the POST request to your backend
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
+        // 3. CRITICAL: This tells the browser to send and save the session cookie!
+        credentials: "include",
+      });
+
+      // 4. Handle the Response
+      if (response.ok) {
+        // HTTP 200 OK
+        console.log("login:success");
+        onLoginSuccess();
+        navigate("/home");
+      } else {
+        // HTTP 401 (Invalid username or password)
+        const errorMessage = await response.text();
+        console.error("Login failed:", errorMessage);
+      }
+    } catch (err) {
+      // This catches network errors (e.g., backend is down)
+      console.error("Network error:", err);
+    }
   };
 
   return (
