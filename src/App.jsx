@@ -12,6 +12,7 @@ import IndexPage from "./pages/IndexPage";
 import MePage from "./pages/MePage.jsx";
 import LogActivity from "./pages/LogActivity.jsx";
 import CommunityPage from "./pages/CommunityPage.jsx";
+import LeaderboardPage from "./pages/LeaderboardPage.jsx";
 
 // Replace the darkTheme in App.jsx with this:
 const darkTheme = createTheme({
@@ -105,6 +106,7 @@ function App() {
           <Route path="/me" element={isLoggedIn ? <MePage onLogout={handleLogout}/> : <Navigate to="/login" />} />
           <Route path="/log-activity" element={isLoggedIn ? <LogActivity /> : <Navigate to="/login" />} />
           <Route path="/community" element={isLoggedIn ? <CommunityPage /> : <Navigate to="/login" />} />
+          <Route path="/leaderboard" element={isLoggedIn ? <LeaderboardPage /> : <Navigate to="/login" />} />
         </Routes>
       </ThemeProvider>
   );
