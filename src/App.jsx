@@ -14,67 +14,79 @@ import LogActivity from "./pages/LogActivity.jsx";
 import CommunityPage from "./pages/CommunityPage.jsx";
 import LeaderboardPage from "./pages/LeaderboardPage.jsx";
 
-// Material Design 3 "Indigo Light" Theme
-const materialLightTheme = createTheme({
+// "Onyx & Electric Blue" AMOLED Theme
+const onyxBlackTheme = createTheme({
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
-      main: "#6750A4", // M3 Indigo Primary
-      light: "#EADDFF",
-      dark: "#21005D",
-      contrastText: "#FFFFFF",
+      main: "#3B82F6", // Bright Electric Blue
+      light: "#60A5FA",
+      dark: "#1D4ED8",
     },
     secondary: {
-      main: "#625B71", // M3 Muted Secondary
+      main: "#A855F7", // Purple accent for variety
     },
     background: {
-      default: "#FEF7FF", // M3 Surface color (light violet tint)
-      paper: "#FFFFFF",   // Pure white for cards
+      default: "#000000", // Pure Black (AMOLED)
+      paper: "#0A0A0A",   // Extremely dark gray for cards
     },
     text: {
-      primary: "#1D1B20", // Deep Charcoal
-      secondary: "#49454F", // Muted Gray
+      primary: "#FFFFFF",
+      secondary: "#94A3B8",
     },
-    divider: "#CAC4D0",
+    divider: "rgba(255, 255, 255, 0.08)",
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h3: {
-      fontWeight: 400,
-      letterSpacing: "-0.5px",
-      color: "#1D1B20"
+      fontWeight: 900,
+      letterSpacing: "-1.5px",
     },
     h4: {
-      fontWeight: 500,
-      color: "#1D1B20"
+      fontWeight: 800
     },
     button: {
       textTransform: 'none',
-      fontWeight: 600,
-      letterSpacing: "0.1px"
+      fontWeight: 700,
+      letterSpacing: "0.5px"
     }
   },
   shape: {
-    borderRadius: 16, // Modern rounded corners
+    borderRadius: 12,
   },
   components: {
-    MuiButton: {
+    MuiCssBaseline: {
       styleOverrides: {
-        root: {
-          borderRadius: 100, // Pill-shaped buttons (standard M3)
-          padding: '10px 24px',
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: '0px 1px 3px rgba(0,0,0,0.1)',
-          },
+        body: {
+          // Custom scrollbar for a sleek black look
+          "&::-webkit-scrollbar": { width: 8 },
+          "&::-webkit-scrollbar-track": { background: "#000000" },
+          "&::-webkit-scrollbar-thumb": { background: "#333", borderRadius: 10 },
+          "&::-webkit-scrollbar-thumb:hover": { background: "#444" },
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          boxShadow: '0px 1px 3px rgba(0,0,0,0.05)', // Very soft elevation
-          border: '1px solid #E7E0EC', // Subtle outline for depth
+          backgroundImage: "none",
+          backgroundColor: "#0A0A0A",
+          border: "1px solid rgba(255, 255, 255, 0.05)", // Critical for defining edges on black
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          padding: '8px 24px',
+        },
+        containedPrimary: {
+          boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)", // Subtle glow effect
+          '&:hover': {
+            boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
+          },
         },
       },
     },
@@ -123,7 +135,7 @@ function App() {
 
   if (isLoading) {
     return (
-        <ThemeProvider theme={materialLightTheme}>
+        <ThemeProvider theme={onyxBlackTheme}>
           <CssBaseline />
           <Box sx={{
             display: 'flex',
@@ -139,7 +151,7 @@ function App() {
   }
 
   return (
-      <ThemeProvider theme={materialLightTheme}>
+      <ThemeProvider theme={onyxBlackTheme}>
         <CssBaseline />
 
         <Routes>
@@ -155,17 +167,5 @@ function App() {
       </ThemeProvider>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default App;
