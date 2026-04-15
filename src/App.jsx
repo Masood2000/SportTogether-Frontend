@@ -14,35 +14,70 @@ import LogActivity from "./pages/LogActivity.jsx";
 import CommunityPage from "./pages/CommunityPage.jsx";
 import LeaderboardPage from "./pages/LeaderboardPage.jsx";
 
-// Replace the darkTheme in App.jsx with this:
-const darkTheme = createTheme({
+// "Midnight Velocity" Theme Configuration
+const midnightVelocityTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#00E5FF", // Electric Cyan (High energy, futuristic)
+      main: "#F59E0B", // Vibrant Amber (High energy, stands out against dark backgrounds)
+      light: "#FBBF24",
+      dark: "#B45309",
     },
     secondary: {
-      main: "#FF2A5F", // Vibrant Pink/Red (Less aggressive than pure red, more modern)
+      main: "#10B981", // Emerald Green (Perfect for "Activity Logged" or success states)
     },
     background: {
-      default: "#0B0F19", // Deep Midnight Blue instead of pure black
-      paper: "#1A2235",   // Slightly lighter blue-gray for cards
+      default: "#0F172A", // Very Deep Navy Slate (More sophisticated than pure black)
+      paper: "#1E293B",   // Lighter Slate for cards and modals
     },
+    text: {
+      primary: "#F8FAFC", // Off-white for better readability
+      secondary: "#94A3B8", // Muted slate for less important info
+    },
+    divider: "rgba(255, 255, 255, 0.12)",
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h3: { fontWeight: 800, letterSpacing: "-1px" },
-    h4: { fontWeight: 800 },
-    button: { textTransform: 'none', fontWeight: 700, letterSpacing: "0.5px" }
+    h3: {
+      fontWeight: 900,
+      letterSpacing: "-0.02em",
+      color: "#F8FAFC"
+    },
+    h4: {
+      fontWeight: 800,
+      color: "#F8FAFC"
+    },
+    button: {
+      textTransform: 'none',
+      fontWeight: 700,
+      fontSize: '0.95rem'
+    }
   },
   shape: {
-    borderRadius: 16, // Softer, rounder corners
+    borderRadius: 12, // Modern, slightly rounded edges
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8, // Crisper buttons
+          padding: '8px 20px',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: "none", // Removes the default MUI "elevation" overlay for a cleaner look
+        },
+      },
+    },
   },
 });
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   // Check session when the app loads
   useEffect(() => {
@@ -50,7 +85,7 @@ function App() {
       try {
         const response = await fetch("http://localhost:8080/api/auth/me", {
           method: "GET",
-          credentials: "include", // CRITICAL: Send the session cookie
+          credentials: "include",
         });
 
         if (response.ok) {
@@ -62,14 +97,14 @@ function App() {
         console.error("Session check failed:", error);
         setIsLoggedIn(false);
       } finally {
-        setIsLoading(false); // Stop loading once we have an answer
+        setIsLoading(false);
       }
     };
 
     checkSession();
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
 
-  // Handle Logout securely by destroying the backend session
+  // Handle Logout
   const handleLogout = async () => {
     try {
       await fetch("http://localhost:8080/api/auth/logout", {
@@ -82,12 +117,17 @@ function App() {
     }
   };
 
-  // Show a spinner while checking the session to prevent UI flickering
   if (isLoading) {
     return (
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={midnightVelocityTheme}>
           <CssBaseline />
-          <Box sx={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+          <Box sx={{
+            display: 'flex',
+            height: '100vh',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bgcolor: 'background.default'
+          }}>
             <CircularProgress color="primary" />
           </Box>
         </ThemeProvider>
@@ -95,7 +135,7 @@ function App() {
   }
 
   return (
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={midnightVelocityTheme}>
         <CssBaseline />
 
         <Routes>
