@@ -14,61 +14,67 @@ import LogActivity from "./pages/LogActivity.jsx";
 import CommunityPage from "./pages/CommunityPage.jsx";
 import LeaderboardPage from "./pages/LeaderboardPage.jsx";
 
-// "Midnight Velocity" Theme Configuration
-const midnightVelocityTheme = createTheme({
+// Material Design 3 "Indigo Light" Theme
+const materialLightTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#F59E0B", // Vibrant Amber (High energy, stands out against dark backgrounds)
-      light: "#FBBF24",
-      dark: "#B45309",
+      main: "#6750A4", // M3 Indigo Primary
+      light: "#EADDFF",
+      dark: "#21005D",
+      contrastText: "#FFFFFF",
     },
     secondary: {
-      main: "#10B981", // Emerald Green (Perfect for "Activity Logged" or success states)
+      main: "#625B71", // M3 Muted Secondary
     },
     background: {
-      default: "#0F172A", // Very Deep Navy Slate (More sophisticated than pure black)
-      paper: "#1E293B",   // Lighter Slate for cards and modals
+      default: "#FEF7FF", // M3 Surface color (light violet tint)
+      paper: "#FFFFFF",   // Pure white for cards
     },
     text: {
-      primary: "#F8FAFC", // Off-white for better readability
-      secondary: "#94A3B8", // Muted slate for less important info
+      primary: "#1D1B20", // Deep Charcoal
+      secondary: "#49454F", // Muted Gray
     },
-    divider: "rgba(255, 255, 255, 0.12)",
+    divider: "#CAC4D0",
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h3: {
-      fontWeight: 900,
-      letterSpacing: "-0.02em",
-      color: "#F8FAFC"
+      fontWeight: 400,
+      letterSpacing: "-0.5px",
+      color: "#1D1B20"
     },
     h4: {
-      fontWeight: 800,
-      color: "#F8FAFC"
+      fontWeight: 500,
+      color: "#1D1B20"
     },
     button: {
       textTransform: 'none',
-      fontWeight: 700,
-      fontSize: '0.95rem'
+      fontWeight: 600,
+      letterSpacing: "0.1px"
     }
   },
   shape: {
-    borderRadius: 12, // Modern, slightly rounded edges
+    borderRadius: 16, // Modern rounded corners
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8, // Crisper buttons
-          padding: '8px 20px',
+          borderRadius: 100, // Pill-shaped buttons (standard M3)
+          padding: '10px 24px',
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: '0px 1px 3px rgba(0,0,0,0.1)',
+          },
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundImage: "none", // Removes the default MUI "elevation" overlay for a cleaner look
+          boxShadow: '0px 1px 3px rgba(0,0,0,0.05)', // Very soft elevation
+          border: '1px solid #E7E0EC', // Subtle outline for depth
         },
       },
     },
@@ -79,7 +85,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check session when the app loads
   useEffect(() => {
     const checkSession = async () => {
       try {
@@ -104,7 +109,6 @@ function App() {
     checkSession();
   }, []);
 
-  // Handle Logout
   const handleLogout = async () => {
     try {
       await fetch("http://localhost:8080/api/auth/logout", {
@@ -119,7 +123,7 @@ function App() {
 
   if (isLoading) {
     return (
-        <ThemeProvider theme={midnightVelocityTheme}>
+        <ThemeProvider theme={materialLightTheme}>
           <CssBaseline />
           <Box sx={{
             display: 'flex',
@@ -135,7 +139,7 @@ function App() {
   }
 
   return (
-      <ThemeProvider theme={midnightVelocityTheme}>
+      <ThemeProvider theme={materialLightTheme}>
         <CssBaseline />
 
         <Routes>
