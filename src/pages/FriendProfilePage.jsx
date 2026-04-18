@@ -6,7 +6,6 @@ import {
 } from "@mui/material";
 
 
-
 // Icons
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import StarIcon from '@mui/icons-material/Star';
