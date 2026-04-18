@@ -94,4 +94,5 @@ function LogActivity() {
 }
 
 
+
 export default LogActivity;
