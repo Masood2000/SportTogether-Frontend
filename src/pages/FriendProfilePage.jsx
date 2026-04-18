@@ -161,4 +161,5 @@ function FriendProfilePage() {
     );
 }
 
+
 export default FriendProfilePage;
