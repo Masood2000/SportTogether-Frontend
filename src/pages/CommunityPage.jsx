@@ -137,9 +137,16 @@ function CommunityPage() {
                                             primary={<Typography variant="h6" fontWeight="bold" sx={{ color: 'white' }}>{friend.name}</Typography>}
                                             secondary={<Typography variant="body2" sx={{ color: '#00E5FF' }}>@{friend.username}</Typography>}
                                         />
-                                        <Button variant="outlined" startIcon={<PeopleIcon />} disabled sx={{ borderRadius: 8, borderColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.3)' }}>
-                                            Friends
-                                        </Button>
+                                        <Button
+                                        variant="contained"
+                                        component={Link}
+                                        to={`/profile/${friend.id}`} // Links to the new page!
+                                        sx={{ borderRadius: 8, bgcolor: '#A020F0', '&:hover': { bgcolor: '#8a19d6' } }}
+                                    >
+                                        View Profile
+                                    </Button>
+
+
                                     </ListItem>
                                 </Card>
                             ))}

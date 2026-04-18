@@ -12,84 +12,23 @@ import IndexPage from "./pages/IndexPage";
 import MePage from "./pages/MePage.jsx";
 import LogActivity from "./pages/LogActivity.jsx";
 import CommunityPage from "./pages/CommunityPage.jsx";
-import LeaderboardPage from "./pages/LeaderboardPage.jsx";
+import ChallengesPage from "./pages/ChallengesPage.jsx";
+import FriendProfilePage from './pages/FriendProfilePage';
 
-// "Onyx & Electric Blue" AMOLED Theme
-const onyxBlackTheme = createTheme({
+
+
+const darkTheme = createTheme({
   palette: {
-    mode: "dark",
-    primary: {
-      main: "#3B82F6", // Bright Electric Blue
-      light: "#60A5FA",
-      dark: "#1D4ED8",
-    },
-    secondary: {
-      main: "#A855F7", // Purple accent for variety
-    },
+    mode: 'dark',
+    primary: { main: '#00E5FF' }, // Cyan
+    secondary: { main: '#A020F0' }, // Purple
     background: {
-      default: "#000000", // Pure Black (AMOLED)
-      paper: "#0A0A0A",   // Extremely dark gray for cards
+      default: '#0A0A0F', // Very dark blue/black
+      paper: '#12121A',
     },
-    text: {
-      primary: "#FFFFFF",
-      secondary: "#94A3B8",
-    },
-    divider: "rgba(255, 255, 255, 0.08)",
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h3: {
-      fontWeight: 900,
-      letterSpacing: "-1.5px",
-    },
-    h4: {
-      fontWeight: 800
-    },
-    button: {
-      textTransform: 'none',
-      fontWeight: 700,
-      letterSpacing: "0.5px"
-    }
-  },
-  shape: {
-    borderRadius: 12,
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          // Custom scrollbar for a sleek black look
-          "&::-webkit-scrollbar": { width: 8 },
-          "&::-webkit-scrollbar-track": { background: "#000000" },
-          "&::-webkit-scrollbar-thumb": { background: "#333", borderRadius: 10 },
-          "&::-webkit-scrollbar-thumb:hover": { background: "#444" },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: "none",
-          backgroundColor: "#0A0A0A",
-          border: "1px solid rgba(255, 255, 255, 0.05)", // Critical for defining edges on black
-          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          padding: '8px 24px',
-        },
-        containedPrimary: {
-          boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)", // Subtle glow effect
-          '&:hover': {
-            boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
-          },
-        },
-      },
-    },
   },
 });
 
@@ -135,7 +74,7 @@ function App() {
 
   if (isLoading) {
     return (
-        <ThemeProvider theme={onyxBlackTheme}>
+        <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <Box sx={{
             display: 'flex',
@@ -151,7 +90,7 @@ function App() {
   }
 
   return (
-      <ThemeProvider theme={onyxBlackTheme}>
+      <ThemeProvider theme={darkTheme}>
         <CssBaseline />
 
         <Routes>
@@ -162,7 +101,8 @@ function App() {
           <Route path="/me" element={isLoggedIn ? <MePage onLogout={handleLogout}/> : <Navigate to="/login" />} />
           <Route path="/log-activity" element={isLoggedIn ? <LogActivity /> : <Navigate to="/login" />} />
           <Route path="/community" element={isLoggedIn ? <CommunityPage /> : <Navigate to="/login" />} />
-          <Route path="/leaderboard" element={isLoggedIn ? <LeaderboardPage /> : <Navigate to="/login" />} />
+          <Route path="/challenges" element={isLoggedIn ? <ChallengesPage /> : <Navigate to="/login" />} />
+          <Route path="/profile/:userId" element={<FriendProfilePage />} />
         </Routes>
       </ThemeProvider>
   );

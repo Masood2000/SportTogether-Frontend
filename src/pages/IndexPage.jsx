@@ -1,91 +1,64 @@
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  Container,
-  Stack
-} from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box, Container, Stack } from "@mui/material";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
 function IndexPage({ isLoggedIn }) {
-  // If the user is already logged in, we automatically redirect them to the users page
-  
-  console.log("index page")
   if (isLoggedIn) {
     return <Navigate to="/home" />;
   }
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh' }}>
-      {/* Top Navigation Bar */}
-      <AppBar position="static" elevation={1}>
-        <Toolbar>
-          <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: 1 }}
-          >
-            Sport Together
+      <Box sx={{
+        flexGrow: 1,
+        minHeight: '100vh',
+        background: 'radial-gradient(circle at top, #1a1a2e 0%, #0A0A0F 100%)',
+        overflow: 'hidden'
+      }}>
+        {/* Top Navigation Bar */}
+        <AppBar position="transparent" elevation={0} sx={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+          <Toolbar>
+            <FitnessCenterIcon sx={{ color: '#00E5FF', mr: 2, fontSize: 30 }} />
+            <Typography variant="h5" component="div" sx={{ flexGrow: 1, fontWeight: '900', letterSpacing: 1, color: 'white' }}>
+              SPORT<span style={{ color: '#00E5FF' }}>TOGETHER</span>
+            </Typography>
+
+            <Button color="inherit" component={Link} to="/login" sx={{ fontWeight: 'bold', mr: 2, '&:hover': { color: '#00E5FF' } }}>
+              Log In
+            </Button>
+            <Button variant="outlined" component={Link} to="/signup" sx={{
+              borderColor: '#00E5FF', color: '#00E5FF', borderRadius: 8, px: 3,
+              '&:hover': { borderColor: '#00E5FF', boxShadow: '0 0 15px rgba(0, 229, 255, 0.4)' }
+            }}>
+              Sign Up
+            </Button>
+          </Toolbar>
+        </AppBar>
+
+        {/* Main Hero Section */}
+        <Container maxWidth="md" sx={{ mt: 12, textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <Typography variant="h1" component="h1" gutterBottom fontWeight="900" sx={{
+            background: "linear-gradient(45deg, #00E5FF 20%, #A020F0 80%)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            fontSize: { xs: '4rem', md: '6rem' }
+          }}>
+            Never Train Alone.
           </Typography>
-          
-          {/* Top Right Buttons */}
-          <Button color="inherit" component={Link} to="/login" sx={{ fontWeight: 'bold' }}>
-            Login
-          </Button>
-          <Button 
-            variant="outlined" 
-            color="inherit" 
-            component={Link} 
-            to="/signup" 
-            sx={{ ml: 2, borderColor: 'white', '&:hover': { borderColor: 'white', backgroundColor: 'rgba(255,255,255,0.1)' } }}
-          >
-            Sign Up
-          </Button>
-        </Toolbar>
-      </AppBar>
+          <Typography variant="h5" color="text.secondary" paragraph sx={{ maxWidth: 600, mx: 'auto', mb: 6, lineHeight: 1.6 }}>
+            Connect with local athletes, organize matches, compete on leaderboards, and crush your goals together.
+          </Typography>
 
-      {/* Main Visual/Hero Section */}
-      <Container maxWidth="md" sx={{ mt: 8, textAlign: 'center' }}>
-        <Typography variant="h2" component="h1" gutterBottom fontWeight="800" color="primary">
-          Welcome to Sport Together
-        </Typography>
-        <Typography variant="h6" color="text.secondary" paragraph>
-          Connect with local athletes, organize matches, and never play alone again.
-          Join our active community today!
-        </Typography>
-
-        {/* Visuals / Image Placeholder */}
-        <Box sx={{ mt: 5, display: 'flex', justifyContent: 'center' }}>
-          <Box
-            component="img"
-            sx={{
-              height: 'auto',
-              width: '100%',
-              maxWidth: 700,
-              borderRadius: 3,
-              boxShadow: 4,
-              objectFit: 'cover'
-            }}
-            alt="People playing sports together"
-            // You can replace this with your actual app visual/logo
-            src="https://images.unsplash.com/photo-1526676037777-05a232554f77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-          />
-        </Box>
-
-        {/* Call to Action Buttons */}
-        <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 6, mb: 6 }}>
-          <Button variant="contained" size="large" component={Link} to="/signup" sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}>
-            Get Started
-          </Button>
-          <Button variant="text" size="large" component={Link} to="/login" sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}>
-            I already have an account
-          </Button>
-        </Stack>
-      </Container>
-    </Box>
+          {/* Call to Action Buttons */}
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} justifyContent="center">
+            <Button variant="contained" size="large" component={Link} to="/signup" sx={{
+              px: 5, py: 2, fontSize: '1.2rem', borderRadius: 8, bgcolor: '#00E5FF', color: 'black', fontWeight: 'bold',
+              boxShadow: '0 0 20px rgba(0, 229, 255, 0.4)', '&:hover': { bgcolor: '#00B3CC', transform: 'translateY(-2px)' }
+            }}>
+              Start Your Journey
+            </Button>
+          </Stack>
+        </Container>
+      </Box>
   );
 }
 
