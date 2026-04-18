@@ -263,6 +263,4 @@ function HomePage({ isLoggedIn, onLogout }) {
   );
 }
 
-
-
 export default HomePage;
