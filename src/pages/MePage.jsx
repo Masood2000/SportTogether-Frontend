@@ -193,6 +193,4 @@ function MePage({ onLogout }) {
     );
 }
 
-
-
 export default MePage;
