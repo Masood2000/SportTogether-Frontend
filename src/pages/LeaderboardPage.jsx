@@ -103,6 +103,7 @@ function LeaderboardPage() {
 }
 
 
+
 // Simple Badge component if not using MUI standard
 const Badge = ({ children, badgeContent }) => (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
