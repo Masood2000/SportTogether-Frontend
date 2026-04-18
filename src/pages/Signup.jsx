@@ -6,7 +6,6 @@ import {
 } from "@mui/material";
 
 
-
 const SEX_OPTIONS = ["MALE", "FEMALE", "OTHER"];
 const FITNESS_LEVELS = ["BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"];
 const SPORT_OPTIONS = ["TENNIS", "FOOTBALL", "BASKETBALL", "CRICKET", "RUNNING", "CYCLING", "SWIMMING", "BADMINTON"];
