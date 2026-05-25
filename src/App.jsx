@@ -15,6 +15,9 @@ import ChallengesPage from "./pages/ChallengesPage.jsx";
 import FriendProfilePage from './pages/FriendProfilePage';
 
 
+
+
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
