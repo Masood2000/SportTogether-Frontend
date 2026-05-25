@@ -16,7 +16,6 @@ import FriendProfilePage from './pages/FriendProfilePage';
 
 
 
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
