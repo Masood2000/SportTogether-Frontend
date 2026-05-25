@@ -108,6 +108,7 @@ function App() {
           <Route path="/profile/:userId" element={<FriendProfilePage />} />
         </Routes>
       </ThemeProvider>
+
   );
 }
 
